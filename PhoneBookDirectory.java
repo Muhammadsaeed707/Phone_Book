@@ -34,18 +34,28 @@ class PhoneBookDirectory {
 		for (int i = 0; i < 6; i++) {
 			for (int j = 1; j < 6; j++) {
 				if (array1[i].getID() > array1[j].getID()) {
-					int l = array1[i].getID();
-					array1[i].setId(array1[j].getID());
-					array1[j].setId(l);
+					PhoneBookEntry n = array1[i];
+					array1[i] = array1[j];
+					array1[j] = n;
 				}
 			}
 		}
-		// Binary search from here onwards
-			// if (int r >= 1) {
-			// 	int mid = 1 + (r-1) / 2;
-			// 	if (array1[mid] == id)
-			// 		return array1[mid];
-		// return array1[]
+		int i = 0;
+		int j = 5;
+		int mid;
+		while(i <= j){
+			mid = (i + j) / 2;
+			if(id == array1[mid].getID()) {
+				return array1[mid];
+			}
+			if(id < array1[mid].getID()) {
+				j = mid - 1;
+			}
+			else {
+				i = mid + 1;
+			}
+		}
+		return new PhoneBookEntry();
 	}
 
 	public int Edit(String firstName, String lastName) {
@@ -60,5 +70,4 @@ class PhoneBookDirectory {
 		}
 		return k;
 	}
-
 }
